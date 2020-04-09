@@ -50,47 +50,59 @@ spanTags = soup.find_all('span')
 for tag in spanTags:
     # check if tag contains lowPrice
     if(str(tag).count('lowPrice') > 0):
+
         # strip string of all nonnumeric values
         priceTag = tag
-        print('Before stripping: ', priceTag)
         priceTag = re.sub("[^0-9 , .]", "", str(priceTag))
-        print('After stripping: ', priceTag)
 
         # substring to remove decimal point
         placeOfPt = str(priceTag).find('.')
         if(placeOfPt != -1):
             priceTag = priceTag[0 : int(placeOfPt)]
-        print('Integer Price: ', priceTag)
+            print('Current price for 7 nights: ' + priceTag)
         priceTag = re.sub(" ", "", str(priceTag))
 
+# find price per day
+fullPrice = float(priceTag) / 7
+discountPrice = fullPrice * 0.4
+avgPrice = (fullPrice + discountPrice) / 2
+print("Price of ticket per day: " + str(avgPrice))
 
 # append to price firstLine
 priceFile.write(str(datetime.now()) + "\n")
-priceFile.write("Price of ticket: " + "\n" + str(priceTag) + "\n")
+priceFile.write("Price of ticket per day: " + "\n" + str(avgPrice) + "\n")
 priceFile.close()
 
 # email myself
 # message for email
-subject = "Cruise Price Change"
-content = "hello Samuel, this is your python program"
-message = 'Subject: {}\n\n{}'.format(subject, content)
-# set the 'from' address,
-fromaddr = 'samuel.liu1004@gmail.com'
-# set the 'to' addresses,
-toaddrs  = 'samuel.liu1004@gmail.com'
+if(float(lastLine) > float(avgPrice)):
 
-# setup the email server,
-server = smtplib.SMTP('smtp.gmail.com', 587)
-server.starttls()
-# add my account login name and password,
-server.login("samuel.liu1004@gmail.com", "Ildbtfmo35")
+    # log
+    print('Sending email')
 
-# Print the email's contents
-print('From: ' + fromaddr)
-print('To: ' + str(toaddrs))
-print('Message: ' + message)
+    # make subject and msg
+    subject = "Cruise Price Change"
+    content = "Price has lowered to " + str(priceTag) + "!"
+    message = 'Subject: {}\n\n{}'.format(subject, content)
+    # set the 'from' address,
+    fromaddr = 'samuel.liu1004@gmail.com'
+    # set the 'to' addresses,
+    toaddrs  = 'samuel.liu1004@gmail.com'
 
-# send the email
-server.sendmail(fromaddr, toaddrs, message)
-# disconnect from the server
-server.quit()
+    # setup the email server,
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    # add my account login name and password,
+    server.login("samuel.liu1004@gmail.com", "Ildbtfmo35")
+
+    # Print the email's contents
+    print('From: ' + fromaddr)
+    print('To: ' + str(toaddrs))
+    print('Message: ' + message)
+
+    # send the email
+    server.sendmail(fromaddr, toaddrs, message)
+    # disconnect from the server
+    server.quit()
+else:
+    print('Price has not changed')
