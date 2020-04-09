@@ -13,8 +13,18 @@ import smtplib
 # Import re for string stripping
 import re
 
-# open price file
+# Import datetime for date and times
+from datetime import datetime
+
+# open price file for reading
 priceFile = open('price.txt', 'r')
+firstLine = priceFile.readline()
+for lastLine in priceFile:
+    pass
+priceFile.close()
+
+# open price file for appending
+priceFile = open('price.txt', 'a')
 
 # set URL
 url = "https://www.royalcaribbean.com/cruises/itinerary/7-night-greece-italy-with-late-stays-in-santorini-mykonos-from-rome-civitavecchia-on-odyssey/OY07ROM-2173932233?sail-date=2021-08-22&currency=USD&country=USA&dates_maxDate=06%2F30%2F2021&dates_minDate=06%2F01%2F2021"
@@ -43,7 +53,7 @@ for tag in spanTags:
         # strip string of all nonnumeric values
         priceTag = tag
         print('Before stripping: ', priceTag)
-        priceTag = re.sub("[^0-9,.]", "", str(priceTag))
+        priceTag = re.sub("[^0-9 , .]", "", str(priceTag))
         print('After stripping: ', priceTag)
 
         # substring to remove decimal point
@@ -51,3 +61,12 @@ for tag in spanTags:
         if(placeOfPt != -1):
             priceTag = priceTag[0 : int(placeOfPt)]
         print('Integer Price: ', priceTag)
+        priceTag = re.sub(" ", "", str(priceTag))
+
+
+# append to price firstLine
+priceFile.write(str(datetime.now()) + "\n")
+priceFile.write("Price of ticket: " + "\n" + str(priceTag) + "\n")
+priceFile.close()
+
+# email
