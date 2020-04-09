@@ -69,4 +69,28 @@ priceFile.write(str(datetime.now()) + "\n")
 priceFile.write("Price of ticket: " + "\n" + str(priceTag) + "\n")
 priceFile.close()
 
-# email
+# email myself
+# message for email
+subject = "Cruise Price Change"
+content = "hello Samuel, this is your python program"
+message = 'Subject: {}\n\n{}'.format(subject, content)
+# set the 'from' address,
+fromaddr = 'samuel.liu1004@gmail.com'
+# set the 'to' addresses,
+toaddrs  = 'samuel.liu1004@gmail.com'
+
+# setup the email server,
+server = smtplib.SMTP('smtp.gmail.com', 587)
+server.starttls()
+# add my account login name and password,
+server.login("samuel.liu1004@gmail.com", "Ildbtfmo35")
+
+# Print the email's contents
+print('From: ' + fromaddr)
+print('To: ' + str(toaddrs))
+print('Message: ' + message)
+
+# send the email
+server.sendmail(fromaddr, toaddrs, message)
+# disconnect from the server
+server.quit()
