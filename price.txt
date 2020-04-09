@@ -49,4 +49,12 @@ Price of ticket per day:
 119.9
 2020-04-09 09:58:33.053046
 Price of ticket per day: 
+200.02020-04-09 10:04:21.415550
+Price of ticket per day: 
+119.9
+2020-04-09 10:04:39.120072
+Price of ticket per day: 
+200
+2020-04-09 10:05:30.265731
+Price of ticket per day: 
 119.9

@@ -92,8 +92,12 @@ if(float(lastLine) > float(avgPrice)):
     # setup the email server,
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
+
+    # password
+    passwordFile = open('Mypassword.txt', 'r')
+    password = passwordFile.readline()
     # add my account login name and password,
-    server.login("samuel.liu1004@gmail.com", "Ildbtfmo35")
+    server.login("samuel.liu1004@gmail.com", password)
 
     # Print the email's contents
     print('From: ' + fromaddr)
