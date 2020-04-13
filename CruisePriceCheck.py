@@ -113,4 +113,15 @@ while 1:
         print('Price has not changed')
 
     # sleep for a while
-    time.sleep(10800)
+    print('Now sleeping...')
+    print('Current time: ', datetime.now())
+    time.sleep(3600)
+    print('One hour elapsed')
+    print('Current time: ', datetime.now())
+    time.sleep(3600)
+    print('Two hours elapsed')
+    print('Current time: ', datetime.now())
+    time.sleep(3600)
+    print('Three hours elapsed')
+    print('Current time: ', datetime.now())
+    print('Checking again...')
