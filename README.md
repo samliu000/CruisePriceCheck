@@ -8,7 +8,7 @@ Uses the python beautiful soup library to scrape Royal Carribean's website for t
 Uses python's built in smtp library to send an email to be if the price ever drops below a target price
 
 ## Example Output
-2020-04-09 09:28:18.954016
+2020-04-09 09:28:18.954016 <br>
 Price of ticket: 
 1199
 
