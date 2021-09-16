@@ -9,19 +9,19 @@ Uses python's built in smtp library to send an email to be if the price ever dro
 
 ## Example Output
 2020-04-09 09:28:18.954016 <br>
-Price of ticket: 
+Price of ticket: <br>
 1199
 
-2020-04-09 09:29:34.499124
-Price of ticket: 
+2020-04-09 09:29:34.499124 <br>
+Price of ticket: <br>
 1199
 
-2020-04-09 09:33:03.592982
-Price of ticket: 
+2020-04-09 09:33:03.592982<br>
+Price of ticket: <br>
 1199
 
-2020-04-09 09:35:27.001652
-Price of ticket: 
+2020-04-09 09:35:27.001652<br>
+Price of ticket: <br>
 1199
 
 ... so on
